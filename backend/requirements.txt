@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+sqlalchemy
+mysqlclient==2.1.1
+alembic
+pytest
+httpx
+alembic
+scikit-learn
