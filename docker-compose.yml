@@ -1,19 +1,19 @@
 services:
-  # backend:
-  #   image: fastapi:v1.0
-  #   container_name: backend
-  #   stdin_open: true
-  #   tty: true
-  #   restart: always
-  #   build:
-  #     context: ./backend
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - '8005:8005'
-  #   volumes:
-  #     - ./backend/app:/app
-  #   env_file:
-  #     - ./backend/dev.env
+  backend:
+    image: fastapi:v1.0
+    container_name: backend
+    stdin_open: true
+    tty: true
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - '8005:8005'
+    volumes:
+      - ./backend/app:/app
+    env_file:
+      - ./backend/dev.env
 
   frontend:
     image: react:v1.0
@@ -32,38 +32,23 @@ services:
       - ./frontend:/usr/src/app
     command: /bin/sh
 
-  # frontend:
-  #   image: react:v1.0
-  #   container_name: frontend
-  #   stdin_open: true
-  #   tty: true
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "5173:5173"  # Vite の開発サーバーにアクセスできるようにポートを公開
-  #   volumes:
-  #     - ./frontend:/app
-  #   environment:
-  #     - NODE_ENV=development
-    
-  # db:
-  #   image: mysql:5.7
-  #   container_name: db
-  #   platform: linux/x86_64
-  #   #It is recommended that environment variables be managed in env files
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: rootpass
-  #     MYSQL_DATABASE: sample_db
-  #     MYSQL_USER: mysqluser
-  #     MYSQL_PASSWORD: mysqlpass
-  #   volumes:
-  #     - ./db/data:/var/lib/mysql
-  #     - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
-  #     - ./db/initdb.d:/docker-entrypoint-initdb.d
-  #   ports:
-  #     - 3308:3308
-  #   command: --port 3308
-  #   tty: true
+  db:
+    image: mysql:5.7
+    container_name: db
+    platform: linux/x86_64
+    #It is recommended that environment variables be managed in env files
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: sample_db
+      MYSQL_USER: mysqluser
+      MYSQL_PASSWORD: mysqlpass
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./db/initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - 3308:3308
+    command: --port 3308
+    tty: true
 
 
